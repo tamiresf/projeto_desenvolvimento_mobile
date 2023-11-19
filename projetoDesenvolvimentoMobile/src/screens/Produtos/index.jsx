@@ -5,12 +5,19 @@ import { api } from "../../service/api";
 
 const Produtos = () => {
   const [listaProdutos, setListaProdutos] = useState([]);
+  const [listaImpar, setListaImpar] = useState([]);
+  const [listaPar, setListaPar] = useState([]);
 
   const getProdutos = async () => {
     try {
       const response = await api.get("/produtos");
       setListaProdutos(response.data);
       console.log(response.data);
+
+      setListaPar(listaProdutos.filter(produtos => produtos.id%2==0))
+      listaProdutos.filter(produtos => produtos.id%2==0)
+      console.log(listaPar)
+
     } catch (error) {
       console.log(error);
     }
@@ -24,7 +31,7 @@ const Produtos = () => {
     <View>
       {listaProdutos.length > 0 ? (
         <FlatList
-          data={listaProdutos}
+          data={listaPar}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <View
