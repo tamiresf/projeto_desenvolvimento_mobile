@@ -19,7 +19,7 @@ const Rotas = () => {
             options={{headerShown: false}}
             />
             <Screen
-            name="detalhes"
+            name="Detalhes"
             component={Detalhes}
             options={{headerShown: false}}
             />
