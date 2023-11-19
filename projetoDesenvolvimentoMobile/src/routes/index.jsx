@@ -13,10 +13,10 @@ const Rotas = () => {
     return (
         <NavigationContainer>
             <Navigator screenOptions={{ headerShown: false }}>
+                <Screen name="Produtos" component={Produtos} />
                 <Screen name="Detalhes" component={Detalhes} />
                 <Screen name="EsqueciSenha" component={EsqueciSenha} />
                 <Screen name="Home" component={Home} />
-                <Screen name="Produtos" component={Produtos} />
             </Navigator>
         </NavigationContainer >
     );

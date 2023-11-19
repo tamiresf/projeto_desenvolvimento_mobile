@@ -1,6 +1,7 @@
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import { api } from "../../service/api";
+
 
 const Produtos = () => {
   const [listaProdutos, setListaProdutos] = useState([]);
@@ -35,6 +36,8 @@ const Produtos = () => {
             >
               <Text style={{ padding: 20, margin: 10, fontSize: 35 }}>
                 {item.nome}
+                <Image height= {100} width= {100} source={{uri:item?.imagem}}/>
+                
               </Text>
             </View>
           )}
