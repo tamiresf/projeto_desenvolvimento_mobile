@@ -1,12 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Produtos from './src/screens/Produtos';
+import Rotas from "./src/routes";
 
 export default function App() {
   return (
-    
-     <Produtos/>   
-    
+     <Rotas/>
   );
 }
 
