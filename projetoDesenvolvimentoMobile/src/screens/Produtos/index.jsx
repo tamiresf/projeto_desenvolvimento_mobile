@@ -28,9 +28,10 @@ const Produtos = ({ navigation }) => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.produtos}>
       <View style={styles.header}>
         <TextInput placeholder="pesquise aqui" style={{ borderRadius: 7 }} />
+
       </View>
       {listaProdutos.length > 0 ? (
         <FlatList
@@ -41,7 +42,7 @@ const Produtos = ({ navigation }) => {
             <View style={styles.lista}>
               <Text style={{ fontSize: 20 }}> {item.nome} </Text>
 
-              <Image height={100} width={100}resizeMode="contain" source={{ uri: item?.imagem }} />
+              <Image height={100} width={100} resizeMode="contain" source={{ uri: item?.imagem }} />
               <Button
                 title="ver mais"
                 onPress={() => navigation.navigate("Detalhes")}
@@ -52,8 +53,9 @@ const Produtos = ({ navigation }) => {
       ) : (
         <Text>Nenhum produto encontrado</Text>
       )}
+
       <View style={styles.footer}>
-         </View>
+      </View>
     </View>
   );
 };
@@ -61,6 +63,9 @@ const Produtos = ({ navigation }) => {
 export default Produtos;
 
 const styles = StyleSheet.create({
+  produtos:{
+    flex: 1,
+  },
   lista: {
     flex: 1,
     backgroundColor: "#aaa",
@@ -78,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: "blue",
   },
   footer: {
-    height: "40%",
+    height: "7%",
     width: "100%",
     backgroundColor: "blue",
   },
