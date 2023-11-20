@@ -1,23 +1,23 @@
-import { View, Text, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  Image,
+  StyleSheet,
+  Button,
+  TextInput,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { api } from "../../service/api";
 
-
-const Produtos = () => {
+const Produtos = ({ navigation }) => {
   const [listaProdutos, setListaProdutos] = useState([]);
-  const [listaImpar, setListaImpar] = useState([]);
-  const [listaPar, setListaPar] = useState([]);
 
   const getProdutos = async () => {
     try {
       const response = await api.get("/produtos");
       setListaProdutos(response.data);
       console.log(response.data);
-
-      setListaPar(listaProdutos.filter(produtos => produtos.id%2==0))
-      listaProdutos.filter(produtos => produtos.id%2==0)
-      console.log(listaPar)
-
     } catch (error) {
       console.log(error);
     }
@@ -29,32 +29,57 @@ const Produtos = () => {
 
   return (
     <View>
+      <View style={styles.header}>
+        <TextInput placeholder="pesquise aqui" style={{ borderRadius: 7 }} />
+      </View>
       {listaProdutos.length > 0 ? (
         <FlatList
-          data={listaPar}
+          data={listaProdutos}
           keyExtractor={(item) => item.id.toString()}
+          numColumns={2}
           renderItem={({ item }) => (
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <Text style={{ padding: 20, margin: 10, fontSize: 35 }}>
-                {item.nome}
-                <Image height= {100} width= {100} source={{uri:item?.imagem}}/>
-                
-              </Text>
+            <View style={styles.lista}>
+              <Text style={{ fontSize: 20 }}> {item.nome} </Text>
+
+              <Image height={100} width={100}resizeMode="contain" source={{ uri: item?.imagem }} />
+              <Button
+                title="ver mais"
+                onPress={() => navigation.navigate("Detalhes")}
+              />
             </View>
           )}
         />
       ) : (
         <Text>Nenhum produto encontrado</Text>
       )}
+      <View style={styles.footer}>
+         </View>
     </View>
   );
 };
 
 export default Produtos;
 
+const styles = StyleSheet.create({
+  lista: {
+    flex: 1,
+    backgroundColor: "#aaa",
+    margin: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 5,
+    borderRadius: 7,
+  },
+  header: {
+    height: "10%",
+    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "blue",
+  },
+  footer: {
+    height: "40%",
+    width: "100%",
+    backgroundColor: "blue",
+  },
+});
