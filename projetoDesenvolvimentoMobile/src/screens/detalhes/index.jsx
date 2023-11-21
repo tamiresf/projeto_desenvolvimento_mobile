@@ -1,7 +1,9 @@
-import { View, Text, StyleSheet, Button, Image } from 'react-native'
+import { View, Text, StyleSheet, Button, Image, KeyboardAvoidingView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { ActivityIndicator, TextInput } from 'react-native-paper'
 import { api } from '../../service/api'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 
 
@@ -10,6 +12,7 @@ const Detalhes = () => {
 
     // id: 0, nome: "", imagem: '', descricao: '', categoria: '', preco: '' 
     const [produto, setProduto] = useState({})
+    const [editando, setEditando] = useState(false)
     const [carregando, setCarregando] = useState(true)
 
     const obterproduto = async () => {
@@ -30,43 +33,34 @@ const Detalhes = () => {
     return (
         <View style={styles.detalhes}>
 
-            <View style={styles.header}>
-                <TextInput placeholder='pesquise aqui' style={{ borderRadius: 7 }} />
-            </View>
+            <Header />
 
             <View style={styles.item}>
-                <View style={{ alignItems: 'center' }}>
-                    <Text style={{ fontSize: 30 }}>{produto.nome}</Text>
-                    <View style={styles.imagem}>
-                        {carregando && <ActivityIndicator size="large" />}
-                        <Image height={200} width={500} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
-                    </View>
+                <View style={{ alignItems: 'center', width: '100%' }}>
+                    <TextInput value={produto.nome} disabled={!editando} multiline={true} style={styles.campos} />
+                    {carregando && <ActivityIndicator size="large" />}
+                    <Image height={200} width={400} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
                 </View>
 
-                <View style={{alignItems:'center'}}>
+                <View style={{ alignItems: 'center', width: '100%' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>descricao:</Text>
-                    <View style={styles.campos}>
-                        <Text>{produto.descricao}</Text>
-                    </View>
+                    <TextInput value={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} />
                 </View>
 
-                <View >
-                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>categoria:</Text>
-                    <View style={styles.campos}>
-                        <Text>{produto.categoria}</Text>
-                    </View>
+                <View style={{ alignItems: 'center', width: '100%' }}>
+                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Categoria:</Text>
+                    <TextInput value={produto.categoria} disabled={!editando} multiline={true} style={styles.campos} />
                 </View>
 
-                <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>preço: </Text>
-                    <Text style={{ padding: 5, borderWidth: 1, borderColor: '#aaa', backgroundColor: '#eee', borderRadius: 10, }}>R${produto.preco}</Text>
+                    <TextInput value={produto.preco?.toString()} disabled={!editando} multiline={true} />
                 </View>
-                <Button title='editar' />
-            </View>
-
-            <View style={styles.footer}>
+                {!editando ? (<Button title='editar' onPress={() => setEditando(!editando)} />) : ((<Button title='salvar' onPress={() => setEditando(!editando)} />))}
 
             </View>
+
+            <Footer />
         </View>
     )
 }
@@ -97,11 +91,8 @@ const styles = StyleSheet.create({
         width: '40%',
     },
     campos: {
-        padding: 5,
-        borderWidth: 1,
-        borderColor: '#aaa',
-        backgroundColor: '#eee',
-        borderRadius: 10,
+        alignItems: 'center',
+        width: '100%',
     },
     footer: {
         height: '7%',
