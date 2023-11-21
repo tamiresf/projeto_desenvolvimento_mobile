@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  StyleSheet,
-  Button,
-  TextInput,
-} from "react-native";
+import { View, Text, FlatList, Image, StyleSheet, Button, TextInput, } from "react-native";
 import React, { useEffect, useState } from "react";
 import { api } from "../../service/api";
 
@@ -63,7 +55,7 @@ const Produtos = ({ navigation }) => {
 export default Produtos;
 
 const styles = StyleSheet.create({
-  produtos:{
+  produtos: {
     flex: 1,
   },
   lista: {

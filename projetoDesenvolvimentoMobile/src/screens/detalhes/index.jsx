@@ -37,24 +37,24 @@ const Detalhes = () => {
 
             <View style={styles.item}>
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                    <TextInput value={produto.nome} disabled={!editando} multiline={true} style={styles.campos} />
+                    <TextInput defaultValue={produto.nome} disabled={!editando} style={styles.campos} />
                     {carregando && <ActivityIndicator size="large" />}
                     <Image height={200} width={400} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>descricao:</Text>
-                    <TextInput value={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} />
+                    <TextInput defaultValue={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Categoria:</Text>
-                    <TextInput value={produto.categoria} disabled={!editando} multiline={true} style={styles.campos} />
+                    <TextInput defaultValue={produto.categoria} disabled={!editando} style={styles.campos} />
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>preço: </Text>
-                    <TextInput value={produto.preco?.toString()} disabled={!editando} multiline={true} />
+                    <TextInput defaultValue={produto.preco?.toString()} disabled={!editando} multiline={true} />
                 </View>
                 {!editando ? (<Button title='editar' onPress={() => setEditando(!editando)} />) : ((<Button title='salvar' onPress={() => setEditando(!editando)} />))}
 
@@ -92,7 +92,10 @@ const styles = StyleSheet.create({
     },
     campos: {
         alignItems: 'center',
+        padding: 1,
         width: '100%',
+        // backgroundColor:'red',
+        flexDirection: 'row',
     },
     footer: {
         height: '7%',
