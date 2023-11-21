@@ -1,5 +1,6 @@
-import { ScrollView, View, Text, Image, StyleSheet, ViewBase } from 'react-native'
+import { ScrollView, View, Text, Image, StyleSheet, SafeAreaView, StatusBar } from 'react-native'
 import React from 'react'
+import { LinearGradient } from 'expo-linear-gradient';
 
 
 const styles = StyleSheet.create({
@@ -8,11 +9,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingTop: 30,
-    marginTop: 50,
+    paddingTop: 40,
+    // marginTop: 50,
     gap: 20,
     paddingHorizontal: 5,
-    // backgroundColor: '#100D28',    
+
 
   },
   image: {
@@ -50,47 +51,68 @@ const styles = StyleSheet.create({
 
 const Perfil = () => {
   return (
-    
+
+
     <View style={styles.container}>
-      
+      <StatusBar barStyle="white"
+        hidden={false}
+        backgroundColor="#100D28"
+        translucent={false}
+        networkActivityIndicatorVisible={true} />
+        <LinearGradient
+          style={{
+            height: 100,
+            width: 100,
+            marginTop: 15,
+            borderRadius: 5
+          }}
+
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          locations={[.5, 0.7]}
+          colors={['#A62A5C', '#6A2597']}>
+
+        </LinearGradient>
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
+        
+        <SafeAreaView>
+          <View>
 
-        <View>
+            <Image
+              style={styles.image}
+              source={require('../../../assets/Tamires.jpeg')} />
+            <Text style={{ ...styles.text, color: 'black' }}><Text style={{ fontWeight: 'bold' }}>Tamires</Text> é uma carioca raiz. Cursando administração, mas algo sempre cutucava sua curiosidade: a tecnologia. Nunca teve lá muito contato com bits e bytes, mas decidiu agarrar essa oportunidade de ouro: está fazendo um curso de fullstack no Serratec. É como se estivesse descobrindo um universo paralelo cheio de linhas de código e possibilidades infinitas.</Text>
 
-          <Image
-            style={styles.image}
-            source={require('../../../assets/Tamires.jpeg')} />
-          <Text style={{ ...styles.text, color: 'black' }}><Text style={{ fontWeight: 'bold' }}>Tamires</Text> é uma carioca raiz. Cursando administração, mas algo sempre cutucava sua curiosidade: a tecnologia. Nunca teve lá muito contato com bits e bytes, mas decidiu agarrar essa oportunidade de ouro: está fazendo um curso de fullstack no Serratec. É como se estivesse descobrindo um universo paralelo cheio de linhas de código e possibilidades infinitas.</Text>
+          </View>
 
-        </View>
+          <View >
+            <Image
+              style={styles.image}
+              source={require('../../../assets/Paulo.jpeg')} />
+            <Text style={{ ...styles.text, color: 'black' }}><Text style={{ fontWeight: 'bold' }}>Paulo Gustavo</Text> é aquele cara que vive no mundo da tecnologia 24 horas por dia, 7 dias por semana. Ele respira bits e bytes, navegando por esse oceano de códigos como um verdadeiro capitão destemido. Para ele, cada linha de código é como uma peça de quebra-cabeça que ele ama montar. Sua paixão pela tecnologia é tão grande que faz até o impossível parecer possível.</Text>
+          </View>
 
-        <View >
-          <Image
-            style={styles.image}
-            source={require('../../../assets/Paulo.jpeg')} />
-           <Text style={{...styles.text, color: 'black'}}><Text style={{ fontWeight: 'bold' }}>Paulo Gustavo</Text> é aquele cara que vive no mundo da tecnologia 24 horas por dia, 7 dias por semana. Ele respira bits e bytes, navegando por esse oceano de códigos como um verdadeiro capitão destemido. Para ele, cada linha de código é como uma peça de quebra-cabeça que ele ama montar. Sua paixão pela tecnologia é tão grande que faz até o impossível parecer possível.</Text> 
-        </View>
+          <View>
+            <Image
+              style={styles.image}
+              source={require('../../../assets/Rayane.jpeg')} />
+            <Text tyle={{}}><Text style={{ fontWeight: 'bold' }}>Rayane</Text>, a menina dos sistemas! Ela é como aquela peça-chave em um jogo de quebra-cabeça: dedicada, focada e sempre pronta para decifrar novos desafios. Está há um ano imersa no mundo da análise e desenvolvimento de sistemas, absorvendo conhecimento como uma esponja. Apesar de só ter um ano de experiência, sua paixão por códigos e algoritmos é palpável. </Text>
+          </View>
 
-        <View>
-          <Image
-            style={styles.image}
-            source={require('../../../assets/Rayane.jpeg')} />
-          <Text tyle={{}}><Text style={{ fontWeight: 'bold' }}>Rayane</Text>, a menina dos sistemas! Ela é como aquela peça-chave em um jogo de quebra-cabeça: dedicada, focada e sempre pronta para decifrar novos desafios. Está há um ano imersa no mundo da análise e desenvolvimento de sistemas, absorvendo conhecimento como uma esponja. Apesar de só ter um ano de experiência, sua paixão por códigos e algoritmos é palpável. </Text>
-        </View>
+          <View>
+            <Image
+              style={styles.image}
+              source={require('../../../assets/Thadeu.jpeg')} />
+            <Text style={{ ...styles.text, color: 'black' }}><Text style={{ fontWeight: 'bold' }}>Thadeu</Text> é aquele cara que não cansa de se reinventar. Depois de se formar em engenharia de produção e aprender a otimizar processos, ele decidiu encarar um novo desafio: mergulhar de cabeça no universo do desenvolvimento fullstack no Serratec. Com um olhar analítico e a mente inquieta, ele viu nessa oportunidade a chance de expandir seus horizontes e mergulhar fundo no mundo da programação.</Text>
+          </View>
 
-        <View>
-          <Image
-            style={styles.image}
-            source={require('../../../assets/Thadeu.jpeg')} />
-          <Text style={{...styles.text, color: 'black'}}><Text style={{ fontWeight: 'bold' }}>Thadeu</Text> é aquele cara que não cansa de se reinventar. Depois de se formar em engenharia de produção e aprender a otimizar processos, ele decidiu encarar um novo desafio: mergulhar de cabeça no universo do desenvolvimento fullstack no Serratec. Com um olhar analítico e a mente inquieta, ele viu nessa oportunidade a chance de expandir seus horizontes e mergulhar fundo no mundo da programação.</Text>
-        </View>
-
-        <View>
-          <Image
-            style={styles.image}
-            source={require('../../../assets/Wallace.jpg')} />
-          <Text style={{...styles.text, color: 'black'}}><Text style={{ fontWeight: 'bold' }}>Wallace</Text> é aquele cara que está expandindo seus horizontes a passos largos. Com um currículo já cheio de conquistas, do bacharelado em Administração à pós-graduação em gestão e marketing esportivo, ele decidiu mergulhar de cabeça em uma nova aventura: está encarando o curso de fullstack no Serratec. Surpreendentemente, Wallace nunca teve contato com tecnologia antes disso, mas isso não o impede de abraçar esse novo desafio com entusiasmo. </Text>
-        </View>
+          <View>
+            <Image
+              style={styles.image}
+              source={require('../../../assets/Wallace.jpg')} />
+            <Text style={{ ...styles.text, color: 'black' }}><Text style={{ fontWeight: 'bold' }}>Wallace</Text> é aquele cara que está expandindo seus horizontes a passos largos. Com um currículo já cheio de conquistas, do bacharelado em Administração à pós-graduação em gestão e marketing esportivo, ele decidiu mergulhar de cabeça em uma nova aventura: está encarando o curso de fullstack no Serratec. Surpreendentemente, Wallace nunca teve contato com tecnologia antes disso, mas isso não o impede de abraçar esse novo desafio com entusiasmo. </Text>
+          </View>
+        </SafeAreaView>
       </ScrollView>
     </View>
 

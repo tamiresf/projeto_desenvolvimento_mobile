@@ -9,6 +9,7 @@ import Produtos from '../screens/Produtos';
 import  Perfil  from '../screens/Perfil';
 import { FontAwesome5 } from '@expo/vector-icons';
 
+
 const { Navigator, Screen } = createBottomTabNavigator();
 
 const Rotas = () => {
