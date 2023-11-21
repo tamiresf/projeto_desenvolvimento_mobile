@@ -16,7 +16,7 @@ const Rotas = () => {
     return (
         <NavigationContainer>
             <Navigator screenOptions={{ headerShown: false }}>
-                <Screen name="Detalhes" component={Detalhes} />
+                {/* <Screen name="Detalhes" component={Detalhes} /> */}
                 <Screen
                     name="Perfil"
                     component={Perfil}
@@ -44,9 +44,9 @@ const Rotas = () => {
                         )
                     }} />
 
-                <Screen
+                {/* <Screen
                     name="EsqueciSenha"
-                    component={EsqueciSenha} />
+                    component={EsqueciSenha} /> */}
 
 
                 <Screen

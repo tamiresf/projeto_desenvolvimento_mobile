@@ -19,12 +19,12 @@ const Perfil = () => {
           // marginTop: 15,
           // borderRadius: 5
           paddingTop: 50,
+          flex: 1,
         }}
 
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        locations={[.5, 0.7]}
-        colors={['#A62A5C', '#6A2597']}>
+        start={{ x: 3.5, y: -3 }}
+        end={{ x: -3, y: 3 }}
+        colors={[ '#050DEB', '#FFFF',]}>
 
         <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
 
@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
     // marginTop: 50,
     gap: 20,
     // paddingHorizontal: 5,
+
   },
   image: {
     flex: 1,
