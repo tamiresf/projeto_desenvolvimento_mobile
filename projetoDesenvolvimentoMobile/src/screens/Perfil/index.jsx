@@ -1,5 +1,6 @@
-import { ScrollView, View, Text, Image, StyleSheet } from 'react-native'
+import { ScrollView, View, Text, Image, StyleSheet, ViewBase } from 'react-native'
 import React from 'react'
+
 
 const styles = StyleSheet.create({
 
@@ -11,7 +12,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     gap: 20,
     paddingHorizontal: 5,
-    //backgroundColor: '#100D28',    
+    // backgroundColor: '#100D28',    
 
   },
   image: {
@@ -49,8 +50,9 @@ const styles = StyleSheet.create({
 
 const Perfil = () => {
   return (
-
+    
     <View style={styles.container}>
+      
       <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll}>
 
         <View>
