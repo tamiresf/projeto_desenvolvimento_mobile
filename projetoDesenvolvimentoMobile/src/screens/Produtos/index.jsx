@@ -20,23 +20,24 @@ const Produtos = ({ navigation }) => {
   useEffect(() => {
     getProdutos();
   }, []);
-  
-  
-   const gardarInfo = async (id) => {      
-        try {
-            await AsyncStorage.setItem('idDoProduto', JSON.stringify(id));
-            console.log(id);
-            navigation.navigate('Detalhes');
-        } catch (e) {
-            console.log(e);
-        }
+
+
+  const gardarInfo = async (id) => {
+    try {
+      AsyncStorage.clear();
+      await AsyncStorage.setItem('idDoProduto', JSON.stringify(id));
+      console.log(id);
+      navigation.navigate('Detalhes');
+    } catch (e) {
+      console.log(e);
     }
-    
+  }
+
   return (
     <View style={styles.produtos}>
       <View style={styles.header}>
-        <TextInput placeholder="Buscar produto" style={styles.campo} 
-          
+        <TextInput placeholder="Buscar produto" style={styles.campo}
+
         />
 
       </View>
@@ -51,13 +52,13 @@ const Produtos = ({ navigation }) => {
 
               <Image height={100} width={100} resizeMode="contain" source={{ uri: item?.imagem }} />
               <TouchableOpacity
-                
+
                 onPress={() => gardarInfo(item.id)}>
-                  <Text style={styles.ver}> Ver Mais</Text>
-                </TouchableOpacity>
-                </View>
-        )}
-                /> 
+                <Text style={styles.ver}> Ver Mais</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        />
       ) : (
         <Text>Nenhum produto encontrado</Text>
       )}

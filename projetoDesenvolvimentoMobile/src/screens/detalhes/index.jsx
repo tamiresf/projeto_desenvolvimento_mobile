@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet, Button, Image, KeyboardAvoidingView } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { ActivityIndicator, TextInput } from 'react-native-paper'
 import { api } from '../../service/api'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useFocusEffect } from "@react-navigation/core";
 
 
 
@@ -15,15 +16,13 @@ const Detalhes = () => {
     const [editando, setEditando] = useState(false);
     const [carregando, setCarregando] = useState(true);
 
-    const [nomeEditado, setNomeEditado] = useState('');
-    const [descricaoEditado, setDescricaoEditado] = useState('');
-    const [categoriaEditado, setCateoriaEditado] = useState('');
-    const [precoEditado, setPrecoEditado] = useState('');
-
     const obterproduto = async () => {
         setCarregando(true)
         try {
-            const { data } = await api.get("/produtos/1");
+            const dado = await AsyncStorage.getItem("idDoProduto");
+            const idDoProduto = JSON.parse(dado);
+            console.log(idDoProduto);
+            const { data } = await api.get(`/produtos/${idDoProduto}`);
             setProduto(data);
             console.log(produto);
         } catch (e) {
@@ -31,76 +30,22 @@ const Detalhes = () => {
         }
     };
 
-    useEffect(() => {
+    useFocusEffect(useCallback(() => {
         obterproduto()
-    }, [])
+    }, []))
 
     const editarProduto = () => {
         setEditando(!editando);
     };
 
-    const verdesc = (des) => {
-        console.log(descricaoEditado);
-        if (des == '') {
-            console.log("if " + descricaoEditado);
-            setDescricaoEditado(produto.descricao)
-        } else {
-
-            console.log("else " + descricaoEditado);
-            setDescricaoEditado(des)
-        }
-    }
-    const vercat = (cat) => {
-        if (cat == '') {
-            setCateoriaEditado(produto.categoria)
-        } else {
-            setCateoriaEditado(cat)
-        }
-    }
-    const vernom = (nom) => {
-        if (nom == '') {
-            setNomeEditado(produto.nome)
-        } else {
-            setNomeEditado(nom)
-        }
-    }
-    const verpre = (pre) => {
-        if (pre == '') {
-            setPrecoEditado(produto.preco)
-        } else {
-            setPrecoEditado(pre)
-        }
-    }
-    const inter = () => {
-        if (nomeEditado == '') {
-            setNomeEditado(produto.nome)
-        }
-        if (descricaoEditado == '') {
-            setDescricaoEditado(produto.descricao)
-        }
-        if (categoriaEditado == '') {
-            setCateoriaEditado(produto.categoria)
-        }
-        if (precoEditado == '') {
-            setPrecoEditado(produto.preco)
-        }
-    }
-
     const salvarAlteracoes = async () => {
-        console.log(nomeEditado);
-        const produtoeditado = {
-            id: produto.id,
-            nome: nomeEditado,
-            descricao: descricaoEditado,
-            categoria: categoriaEditado,
-            preco: precoEditado,
-        }
+
         try {
-            const { data } = await api.put(`/produtos/1`, produtoeditado);
+            const { data } = await api.put(`/produtos/${produto.id}`, produto);
         } catch (e) {
             console.log(e);
         }
-        console.log(produtoeditado);
+        console.log(produto);
         setEditando(false);
     };
 
@@ -111,24 +56,24 @@ const Detalhes = () => {
 
             <View style={styles.item}>
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                    <TextInput placeholder={produto.nome} disabled={!editando} style={styles.campos} value={nomeEditado} onChangeText={(nom) => vernom(nom)} />
+                    <TextInput defaultValue={produto.nome} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.nome = valor} />
                     {carregando && <ActivityIndicator size="large" />}
                     <Image height={200} width={400} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>descricao:</Text>
-                    <TextInput placeholder={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} value={descricaoEditado} onChangeText={(des) => verdesc(des)} />
+                    <TextInput defaultValue={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Categoria:</Text>
-                    <TextInput placeholder={produto.categoria} disabled={!editando} style={styles.campos} value={categoriaEditado} onChangeText={(cat) => vercat(cat)} />
+                    <TextInput defaultValue={produto.categoria} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.categoria = valor} />
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>preço: </Text>
-                    <TextInput placeholder={produto.preco?.toString()} disabled={!editando} multiline={true} value={precoEditado} onChangeText={(pre) => verpre(pre)} />
+                    <TextInput defaultValue={produto.preco?.toString()} disabled={!editando} multiline={true} onChangeText={(valor) => produto.preco = valor} />
                 </View>
                 {!editando ? (<Button title='editar' onPress={() => editarProduto()} />) : ((<Button title='salvar' onPress={() => salvarAlteracoes()} />))}
 
