@@ -26,7 +26,7 @@ const TabScreens = () => {
         ),
       }} />
 
-      <Screen name="Detalhes" component={Detalhes} />
+      
       <Screen
         name="Perfil"
         component={Perfil}
@@ -57,7 +57,7 @@ const TBF = () => {
         
       }} />
 
-      <Screen name="DetalhesFE" component={DetalhesFE} />
+     
       <Screen
         name="Perfil"
         component={Perfil}
@@ -93,6 +93,9 @@ const Rotas = () => {
           options={{ headerShown: false }}
         /> 
         <Stack.Screen name="EsqueciSenha" component={EsqueciSenha} options={{ headerShown: false }} />
+        <Screen name="Detalhes" component={Detalhes} />
+        <Screen name="DetalhesFE" component={DetalhesFE} />
+        
       </Stack.Navigator>
     </NavigationContainer>
   );
