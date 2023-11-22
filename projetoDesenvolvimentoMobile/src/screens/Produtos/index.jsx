@@ -6,9 +6,12 @@ import {
   StyleSheet,
   Button,
   TextInput,
+  TouchableOpacity 
 } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState} from "react";
 import { api } from "../../service/api";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const Produtos = ({ navigation }) => {
   const [listaProdutos, setListaProdutos] = useState([]);
@@ -26,6 +29,17 @@ const Produtos = ({ navigation }) => {
   useEffect(() => {
     getProdutos();
   }, []);
+  
+  
+   const gardarInfo = async (id) => {      
+        try {
+            await AsyncStorage.setItem('idDoProduto', JSON.stringify(id));
+            console.log(id);
+            navigation.navigate('Detalhes');
+        } catch (e) {
+            console.log(e);
+        }
+    }
 
   return (
     <View style={styles.produtos}>
@@ -43,13 +57,14 @@ const Produtos = ({ navigation }) => {
               <Text style={{ fontSize: 20 }}> {item.nome} </Text>
 
               <Image height={100} width={100} resizeMode="contain" source={{ uri: item?.imagem }} />
-              <Button
-                title="ver mais"
-                onPress={() => navigation.navigate("Detalhes")}
-              />
-            </View>
-          )}
-        />
+              <TouchableOpacity
+                
+                onPress={() => gardarInfo(item.id)}>
+                  <Text style={styles.ver}> Ver Mais</Text>
+                </TouchableOpacity>
+                </View>
+        )}
+                /> 
       ) : (
         <Text>Nenhum produto encontrado</Text>
       )}
@@ -86,5 +101,38 @@ const styles = StyleSheet.create({
     height: "7%",
     width: "100%",
     backgroundColor: "blue",
+
+  },
+
+  ver: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 16,
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  productName: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
+  },
+  button: {
+    backgroundColor: '#0A8DD8',
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 4,
+    alignSelf: 'flex-start',
+  },
+  buttonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    paddingTop: 6,
   },
 });
