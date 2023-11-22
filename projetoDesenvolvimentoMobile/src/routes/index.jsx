@@ -15,10 +15,23 @@ const { Navigator, Screen } = createBottomTabNavigator();
 const Rotas = () => {
     return (
         <NavigationContainer>
-            <Navigator screenOptions={{ headerShown: false,
-         
-            }}>
-                {/* <Screen name="Detalhes" component={Detalhes} /> */}
+            <Navigator screenOptions={{ headerShown: false,}}>
+            <Screen
+                                        name="Produtos"
+                                        component={Produtos}
+                                        options={{
+                                            tabBarIcon: ({ focused }) => (
+                                                <View>
+                                                    <FontAwesome5
+                                                        name="search"
+                                                        size={20}
+                                                    ></FontAwesome5>
+                                                </View>
+                                            )
+                                        }} />
+
+
+                <Screen name="Detalhes" component={Detalhes} />
                 <Screen
                     name="Perfil"
                     component={Perfil}
@@ -26,6 +39,7 @@ const Rotas = () => {
                         tabBarIcon: ({ focused }) => (
                             <View>
                                 <FontAwesome5
+                                    
                                     name="user-alt"
                                     size={20}
                                 ></FontAwesome5>
@@ -51,19 +65,6 @@ const Rotas = () => {
                     component={EsqueciSenha} /> */}
 
 
-                <Screen
-                    name="Produtos"
-                    component={Produtos}
-                    options={{
-                        tabBarIcon: ({ focused }) => (
-                            <View>
-                                <FontAwesome5
-                                    name="search"
-                                    size={20}
-                                ></FontAwesome5>
-                            </View>
-                        )
-                    }} />
 
             </Navigator>
         </NavigationContainer >
