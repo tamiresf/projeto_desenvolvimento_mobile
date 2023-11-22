@@ -8,6 +8,7 @@ import EsqueciSenha from '../screens/EsqueciSenha';
 import Produtos from '../screens/Produtos';
 import Perfil from '../screens/Perfil';
 import { FontAwesome5 } from '@expo/vector-icons';
+import Login from '../screens/Login';
 
 
 const { Navigator, Screen } = createBottomTabNavigator();
@@ -16,7 +17,7 @@ const Rotas = () => {
     return (
         <NavigationContainer>
             <Navigator screenOptions={{ headerShown: false, }}>
-
+                <Screen name="Login" component={Login}/>
                 <Screen
                     name="Produtos"
                     component={Produtos}

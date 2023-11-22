@@ -1,24 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import {View, Text, KeyboardAvoidingView, Image, TextInput, Button} from 'react-native';
 import { StyleSheet } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Login = ({navigation})=> {
     
-    const [username, setUserName] = useState('');
-    const [password, setPassowrd] = useState('');
-
+    const [user, setUser]= useState('');
+    const [password, setPassword]= useState('');
 
     const handleLogin = async () => {
-        // Simples verificação de usuário e senha
-        if (username === 'rayane' && password === '123') {
-         // Navega para a próxima tela após o login bem-sucedido
-          navigation.navigate('Produtos');
+        const Usuario = {user, password};
+     const success = true
+        const users = [
+            {userName: "rayane", password: "ryn12"},
+            {userName: "tamires", password: "tmr13"},
+            {userName: "paulo", password: "plg14"}
+        ];
+    
+       if (user===users.userName && password===users.password) {
+        
+       } else {
+        
+       }
+    
+        if (success) {
+            navigation.navigate("Produtos");
         } else {
-          setError('Usuário ou senha inválidos');
+            alert("Usuário não encontrado");
         }
-      };
+    }
+    
     return(
         <KeyboardAvoidingView style={styles.tela}>
             <View>
@@ -28,15 +39,16 @@ const Login = ({navigation})=> {
                 </View>
                 <Image source={require('../../../assets/nossalogo.png')} style={styles.logo}/>
                 <Text style={styles.input}>Usuário</Text>
-                <TextInput style={styles.user} value={username} onChangeText={(text)=> setUserName(text)}/>
+                <TextInput style={styles.user} value={user} onChangeText={(text)=> setUser(text)}/>
                 <Text style={styles.input}>Senha</Text>
                 <TextInput style={styles.senha} value={password} onChangeText={(text)=> setPassword(text)}/>
-                <Button title="Entrar" onPress={handleLogin}/>
+                <Button style={{marginBottom: 12}} title="Entrar" onPress={()=>handleLogin()}/>
             </View>
         </KeyboardAvoidingView>
     )
 }
 export default Login;
+
 
 const styles = StyleSheet.create({
 logo:{
