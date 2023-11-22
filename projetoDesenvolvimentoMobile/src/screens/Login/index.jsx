@@ -24,7 +24,7 @@ const Login = ({navigation})=> {
        }
     
         if (success) {
-            navigation.navigate("Produtos");
+            navigation.navigate("MainApp", {screen : 'Produtos'});
         } else {
             alert("Usuário não encontrado");
         }
