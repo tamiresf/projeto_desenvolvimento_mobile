@@ -13,7 +13,6 @@ const DetalhesFE = () => {
 
     // id: 0, nome: "", imagem: '', descricao: '', categoria: '', preco: '' 
     const [produto, setProduto] = useState({});
-    const [editando, setEditando] = useState(false);
     const [carregando, setCarregando] = useState(true);
 
     const obterproduto = async () => {
@@ -34,20 +33,7 @@ const DetalhesFE = () => {
         obterproduto()
     }, []))
 
-    const editarProduto = () => {
-        setEditando(!editando);
-    };
 
-    const salvarAlteracoes = async () => {
-
-        try {
-            const { data } = await api.put(`/produtos/${produto.id}`, produto);
-        } catch (e) {
-            console.log(e);
-        }
-        console.log(produto);
-        setEditando(false);
-    };
 
     return (
         <View style={styles.detalhes}>
@@ -56,26 +42,28 @@ const DetalhesFE = () => {
 
             <View style={styles.item}>
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                    <TextInput defaultValue={produto.nome} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.nome = valor} />
-                    {carregando && <ActivityIndicator size="large" />}
+                   <Text>{produto.nome}</Text>
+                    {/* <TextInput defaultValue={produto.nome} disabled={false} style={styles.campos} onChangeText={(valor) => produto.nome = valor} /> */}
+                    {/* {carregando && <ActivityIndicator size="large" />} */}
                     <Image height={200} width={400} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>descricao:</Text>
-                    <TextInput defaultValue={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} />
+                    <Text>{produto.descricao}</Text>
+                    {/* <TextInput defaultValue={produto.descricao} disabled={true} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} /> */}
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Categoria:</Text>
-                    <TextInput defaultValue={produto.categoria} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.categoria = valor} />
+                    <Text>{produto.categoria}</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>preço: </Text>
-                    <TextInput defaultValue={produto.preco?.toString()} disabled={!editando} multiline={true} onChangeText={(valor) => produto.preco = valor} />
+                    <Text>{produto.preco}</Text>
                 </View>
-                {!editando ? (<Button title='editar' onPress={() => editarProduto()} />) : ((<Button title='salvar' onPress={() => salvarAlteracoes()} />))}
+                {/* {true ? (<Button title='editar' onPress={() => editarProduto()} />) : ((<Button title='salvar' onPress={() => salvarAlteracoes()} />))} */}
 
             </View>
 

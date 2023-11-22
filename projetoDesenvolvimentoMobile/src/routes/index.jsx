@@ -54,6 +54,7 @@ const TBF = () => {
             <FontAwesome5 name="search" size={20}></FontAwesome5>
          
         ),
+        
       }} />
 
       <Screen name="DetalhesFE" component={DetalhesFE} />

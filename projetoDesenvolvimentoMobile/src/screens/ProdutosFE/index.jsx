@@ -27,7 +27,7 @@ const ProdutosFE = ({ navigation }) => {
       AsyncStorage.clear();
       await AsyncStorage.setItem('idDoProduto', JSON.stringify(id));
       console.log(id);
-      navigation.navigate('Detalhes');
+      navigation.navigate('DetalhesFE');
     } catch (e) {
       console.log(e);
     }
