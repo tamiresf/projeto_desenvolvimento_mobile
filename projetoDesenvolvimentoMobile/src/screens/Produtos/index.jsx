@@ -2,6 +2,7 @@ import { View, Text, FlatList, Image, StyleSheet, Button, TextInput, } from "rea
 import React, { useEffect, useState } from "react";
 import { api } from "../../service/api";
 
+
 const Produtos = ({ navigation }) => {
   const [listaProdutos, setListaProdutos] = useState([]);
 
@@ -22,7 +23,9 @@ const Produtos = ({ navigation }) => {
   return (
     <View style={styles.produtos}>
       <View style={styles.header}>
-        <TextInput placeholder="pesquise aqui" style={{ borderRadius: 7 }} />
+        <TextInput placeholder="Buscar produto" style={styles.campo} 
+          
+        />
 
       </View>
       {listaProdutos.length > 0 ? (
@@ -68,15 +71,25 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   header: {
+    marginTop: 40,
     height: "10%",
     width: "100%",
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "blue",
+    // alignItems: "center",
+    // backgroundColor: "blue",
   },
-  footer: {
-    height: "7%",
-    width: "100%",
-    backgroundColor: "blue",
-  },
+  // footer: {
+  //   height: "7%",
+  //   width: "100%",
+  //   backgroundColor: "blue",
+  // },
+
+  campo:{
+    height: 40,
+    margin: 50,
+    borderWidth: 1,
+    padding: 10,
+    borderRadius: 50,
+ 
+  }
 });

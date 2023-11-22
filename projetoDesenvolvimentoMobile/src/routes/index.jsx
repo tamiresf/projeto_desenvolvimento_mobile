@@ -15,7 +15,9 @@ const { Navigator, Screen } = createBottomTabNavigator();
 const Rotas = () => {
     return (
         <NavigationContainer>
-            <Navigator screenOptions={{ headerShown: false }}>
+            <Navigator screenOptions={{ headerShown: false,
+         
+            }}>
                 {/* <Screen name="Detalhes" component={Detalhes} /> */}
                 <Screen
                     name="Perfil"
