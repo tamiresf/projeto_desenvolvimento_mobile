@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {View, Text, KeyboardAvoidingView, Image, TextInput, Button} from 'react-native';
 import { StyleSheet } from "react-native";
@@ -7,6 +8,7 @@ const Login = ({navigation})=> {
     
     const [user, setUser]= useState('');
     const [password, setPassword]= useState('');
+    const navigation2 = useNavigation()
 
     const handleLogin = async () => {
         const Usuario = {user, password};
@@ -29,6 +31,9 @@ const Login = ({navigation})=> {
             alert("Usuário não encontrado");
         }
     }
+    const handleSemLogin = () =>{
+        navigation2.navigate("FEApp", {screen: 'ProdutosFE'})
+    }
     
     return(
         <KeyboardAvoidingView style={styles.tela}>
@@ -43,6 +48,7 @@ const Login = ({navigation})=> {
                 <Text style={styles.input}>Senha</Text>
                 <TextInput style={styles.senha} value={password} onChangeText={(text)=> setPassword(text)}/>
                 <Button style={{marginBottom: 12}} title="Entrar" onPress={()=>handleLogin()}/>
+                <Button title="Entrar sem login" onPress={handleSemLogin}/>
             </View>
         </KeyboardAvoidingView>
     )

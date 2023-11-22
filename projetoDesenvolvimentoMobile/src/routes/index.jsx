@@ -10,6 +10,8 @@ import Perfil from '../screens/Perfil';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Splash from '../screens/Teste';
 import Login from '../screens/Login';
+import ProdutosFE from '../screens/ProdutosFE';
+import DetalhesFE from '../screens/DetalhesFE';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -36,20 +38,40 @@ const TabScreens = () => {
           ),
         }}
       />
-      <Screen
-        name="Home"
-        component={Home}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            
-              <FontAwesome5 name="home" size={20}></FontAwesome5>
-            
-          ),
-        }}
-      />
+     
     </Navigator>
   );
 };
+
+const TabFrontEnd = createBottomTabNavigator()
+
+const TBF = () => {
+    return(
+        <Navigator screenOptions={{ headerShown: false }}>
+      <Screen name="ProdutosFE" component={ProdutosFE} options={{
+        tabBarIcon: ({ focused }) => (
+          
+            <FontAwesome5 name="search" size={20}></FontAwesome5>
+         
+        ),
+      }} />
+
+      <Screen name="DetalhesFE" component={DetalhesFE} />
+      <Screen
+        name="Perfil"
+        component={Perfil}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            
+              <FontAwesome5 name="user-alt" size={20}></FontAwesome5>
+        
+          ),
+        }}
+      />
+      
+    </Navigator>
+    )
+}
 
 const Stack = createStackNavigator();
 
@@ -60,10 +82,15 @@ const Rotas = () => {
         <Stack.Screen name="Splash" component={Splash} options={{ tabBarVisible: false }} />
         <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false }} />
         <Stack.Screen
+          name="FEApp"
+          component={TBF}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
           name="MainApp"
           component={TabScreens}
           options={{ headerShown: false }}
-        />
+        /> 
         <Stack.Screen name="EsqueciSenha" component={EsqueciSenha} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
