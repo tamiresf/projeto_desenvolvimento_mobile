@@ -8,7 +8,7 @@
   <li>Cadastro com POST na API</li>
   <li>Login com autenticação e feedback de erro</li>
   <li>Front-End do E-Commerce</li>
-  <li>GET (usando Flatlist), PUT, DELETE, EDIT de Produtos</li>
+  <li>GET (usando Flatlist), PUT, DELETE, EDIT e ADD de Produtos</li>
   <li>Ver mais de cada produto( get by id )</li>
   <li>Layout agradável</li>
   <li>2 tipos de navegação:
