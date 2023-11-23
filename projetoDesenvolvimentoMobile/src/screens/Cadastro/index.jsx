@@ -12,6 +12,7 @@ const Cadastro = ({navigation})=> {
     // const [password, setPassword]= useState('');
 
     const navigation2 = useNavigation()
+    const navigation3 = useNavigation()
 
     const handleSemLogin = () =>{
         navigation2.navigate("FEApp", {screen: 'ProdutosFE'})
@@ -23,6 +24,11 @@ const Cadastro = ({navigation})=> {
     const [novaSenha, setNovaSenha] = useState('')
 
     const addConta = async() =>{
+
+        if(novoEmail ==='' || novaDataNascimento ==='' || novoNome==='' || novaSenha===''){
+            alert('Preencha todos os campos')
+            return;
+        };
 
         const cadastro = {
             email: novoEmail,
@@ -38,6 +44,9 @@ const Cadastro = ({navigation})=> {
         } catch (error) {
             console.log(error);
         }
+    }
+    const handlePressLogin = () => {
+        navigation3.navigate('Login');
     }
     //email, dataNascimento, nome, senha
     return(
@@ -62,7 +71,7 @@ const Cadastro = ({navigation})=> {
                 <Text style={styles.input}>Senha</Text>
                 <TextInput style={styles.user} value={novaSenha} onChangeText={setNovaSenha}/>
                 <Button style={{marginBottom: 12}} title="Cadastrar" onPress={addConta}/>
-                <Button style={{marginBottom: 12}} title="Fazer Login" onPress={addConta}/>
+                <Button style={{marginBottom: 12}} title="Fazer Login" onPress={handlePressLogin}/>
                 <Button style={{marginTop: 12}} title="Entrar sem login" onPress={handleSemLogin}/>
                 </View>
             </View>

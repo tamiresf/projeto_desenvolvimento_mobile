@@ -23,16 +23,16 @@ const EsqueciSenha = () => {
           </View>
         <Image 
         source={require('../../../assets/nossalogo.png')}
-        style={{marginBottom: 100}}
+        style={{marginBottom: 80}}
         />
-          <Text style={{color: 'white', fontSize: 50, marginBottom: 40}}>Esqueci minha senha</Text>
+          <Text style={{color: 'white', fontSize: 40, marginBottom: 60}}>Esqueci minha senha</Text>
         </View>
         <View style={{flex:1, alignItems: 'center' }}>
-          <View style={{alignItems: 'flex-start', width: '80%'}}>
-        <Text style={{color: 'white', fontSize: 30, alignSelf: 'flex-start' }}>E-mail para confirmação</Text>
-        <TextInput style={{width: '100%', alignSelf: '', borderRadius: 10}}></TextInput>
-          <TouchableOpacity style={{alignSelf: 'center', marginTop: 40, backgroundColor: 'snow', padding: 15, borderRadius: 10, width: 100}}>
-            <Text style={{alignSelf: 'center',}}>ENTRAR</Text>
+          <View style={{alignItems: 'center', width: '100%'}}>
+        <Text style={{color: 'white', fontSize: 20, alignSelf: 'center', marginRight: 30 }}>E-mail para confirmação</Text>
+        <TextInput style={{width: '60%', alignSelf: 'center', borderRadius: 10, height: 37, backgroundColor: 'white'}}></TextInput>
+          <TouchableOpacity style={{alignSelf: 'center', marginTop: 40, backgroundColor: '#8906E6', padding: 15, borderRadius: 10, width: 100}}>
+            <Text style={{alignSelf: 'center', color: 'white'}}>ENTRAR</Text>
           </TouchableOpacity>
           </View>
         </View>
