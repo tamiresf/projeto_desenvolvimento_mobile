@@ -41,6 +41,7 @@ const Rotas = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
+        {/* <Screen name='Produtos' component={Produtos} /> */}
         <Stack.Screen name="Splash" component={Splash} options={{ tabBarVisible: false }} />
         <Stack.Screen name="Cadastro" component={Cadastro} options={{ tabBarVisible: false }} />
         <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false }} />

@@ -127,7 +127,7 @@ const Detalhes = ({ navigation }) => {
 
             <View style={styles.item}>
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                    <TextInput defaultValue={produto.nome} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.nome = valor} mode='outlined' />
+                    <TextInput placeholder='nome' defaultValue={produto.nome} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.nome = valor} mode='outlined' />
                     {/* {carregando && <ActivityIndicator size="large" />} */}
                     <Image height={300} width={350} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
                     <TextInput defaultValue={produto.imagem} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.imagem = valor} mode='outlined' />
@@ -135,17 +135,17 @@ const Detalhes = ({ navigation }) => {
 
                 <View style={{ alignItems: 'center', width: '100%',marginTop:30 }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>descricao:</Text>
-                    <TextInput defaultValue={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} mode='outlined' />
+                    <TextInput placeholder='descricao' defaultValue={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} mode='outlined' />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%',marginTop:30 }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Categoria:</Text>
-                    <TextInput defaultValue={produto.categoria} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.categoria = valor} mode='outlined' />
+                    <TextInput placeholder='categoria' defaultValue={produto.categoria} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.categoria = valor} mode='outlined' />
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center',marginTop:30 }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>preço: </Text>
-                    <TextInput defaultValue={produto.preco?.toString()} disabled={!editando} style={{ padding: 3 }} onChangeText={(valor) => produto.preco = valor} mode='outlined' />
+                    <TextInput placeholder='preço' defaultValue={produto.preco?.toString()} disabled={!editando} style={{ padding: 3 }} onChangeText={(valor) => produto.preco = valor} mode='outlined' />
                 </View>
 
                 <View style={{ flexDirection: 'row', gap: 20, flex: 1, height: 200 ,marginTop:30}}>
