@@ -3,7 +3,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Detalhes from '../screens/Detalhes';
-
 import EsqueciSenha from '../screens/EsqueciSenha';
 import Produtos from '../screens/Produtos';
 import Perfil from '../screens/Perfil';
@@ -12,6 +11,7 @@ import Splash from '../screens/Teste';
 import Login from '../screens/Login';
 import ProdutosFE from '../screens/ProdutosFE';
 import DetalhesFE from '../screens/DetalhesFE';
+import Cadastro from '../screens/Cadastro';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -81,6 +81,7 @@ const Rotas = () => {
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Splash" component={Splash} options={{ tabBarVisible: false }} />
+        <Stack.Screen name="Cadastro" component={Cadastro} options={{ tabBarVisible: false }} />
         <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false }} />
         <Stack.Screen
           name="FEApp"
