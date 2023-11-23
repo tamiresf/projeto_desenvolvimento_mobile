@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Text,
@@ -9,49 +9,27 @@ import {
   Button,
 } from "react-native";
 import { StyleSheet, TouchableOpacity } from "react-native";
-import EsqueciSenha from "../EsqueciSenha";
-import { conta } from "../../service/api";
+import { AuthContext } from "../../contexts/AuthContext";
 
 const Login = ({ navigation }) => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
-  const [success, setSuccess] = useState(false);
-  const [listaUser, setListaUser] = useState([]);
+  // const [success, setSuccess] = useState(false);
+  // const [listaUser, setListaUser] = useState([]);
   const navigation2 = useNavigation();
   const navigation3 = useNavigation();
 
-  const getUser = async () => {
-    try {
-      const response = await conta.get("/conta");
-      setListaUser(response.data);
-      //   console.log(listaUser);
-      console.log(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getUser();
-  }, []);
+  const { signin } = useContext(AuthContext);
 
   const handleLogin = () => {
 
     const Usuario = { user, password };
-    if (Usuario.user === '' || Usuario.password === '') {
-      alert('Preencha todos os campos')
-      return;
+    if (Usuario.user==='' || Usuario.password==='') {
+        alert('Preencha todos os campos')
+        return;
     }
-    const foundUser = listaUser.find((usuario) => usuario.email === Usuario.user);
+    signin(user, password);
 
-    if (foundUser) {
-      if (foundUser.senha === Usuario.password) {
-        navigation.navigate("MainApp", { screen: "Produtos" });
-      } else {
-        alert("Senha incorreta");
-      }
-    } else {
-      alert("Usuário ou senha não encontrado");
-    }
   };
   const handleSemLogin = () => {
     navigation2.navigate("FEApp", { screen: "ProdutosFE" });
@@ -85,7 +63,7 @@ const Login = ({ navigation }) => {
             onChangeText={(text) => setPassword(text)}
           />
 
-          <TouchableOpacity onPress={() => navigation.navigate("EsqueciSenha")}>
+          <TouchableOpacity onPress={handleEsqueceuSenha}>
             <Text style={{ color: "#fff" }}>Esqueceu a senha?</Text>
           </TouchableOpacity>
         </View>
