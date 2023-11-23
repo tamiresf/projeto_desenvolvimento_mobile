@@ -67,10 +67,10 @@ const Produtos = ({ navigation }) => {
 
       <View style={styles.footer}>
 
-       <TouchableOpacity
+       <TouchableOpacity style={styles.adicionar}
       //  onPress={navigation.navigate ("Detalhes")}
        >
-       <Text style={styles.adicionar}> Adicionar Produto</Text>
+       <Text style={styles.adicionarText}>Adicionar Produto</Text>
        </TouchableOpacity>
 
       </View>
@@ -148,10 +148,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    fontSize: 18,
-    textAlign: 'center',
-    
-    
   },
+
+  adicionarText: {
+    color: 'white',
+    fontSize: 17,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+
 
 });
