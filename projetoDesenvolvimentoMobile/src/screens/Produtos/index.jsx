@@ -60,11 +60,19 @@ const Produtos = ({ navigation }) => {
             </View>
           )}
         />
+        
       ) : (
         <Text>Nenhum produto encontrado</Text>
       )}
 
       <View style={styles.footer}>
+
+       <TouchableOpacity
+      //  onPress={navigation.navigate ("Detalhes")}
+       >
+       <Text style={styles.adicionar}> Adicionar Produto</Text>
+       </TouchableOpacity>
+
       </View>
     </View>
   );
@@ -131,4 +139,19 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     paddingTop: 6,
   },
+
+
+  adicionar: {
+    backgroundColor: 'blue',
+    borderWidth: 2,
+    borderColor: 'blue',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    fontSize: 18,
+    textAlign: 'center',
+    
+    
+  },
+
 });
