@@ -10,7 +10,7 @@ export default function Splash() {
   
   useEffect(() => {
     setTimeout(() => {
-        navigation.navigate('Login')
+        navigation.navigate('Cadastro')
     }, 2000);
   }, []);
 
