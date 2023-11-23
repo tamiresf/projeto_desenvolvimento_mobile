@@ -119,6 +119,7 @@ const Detalhes = ({ navigation }) => {
         <ScrollView style={styles.detalhes}>
 
             <Header />
+            
             <View>
                 <TouchableOpacity onPress={() => navigation.navigate('MainApp', { screen: 'Produtos' })}>
                     <AntDesign name="back" size={30} color="black" />
@@ -126,8 +127,9 @@ const Detalhes = ({ navigation }) => {
             </View>
 
             <View style={styles.item}>
+
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Nome do produto:</Text>
+                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Nome do produto:</Text>
                     <TextInput placeholder='nome' defaultValue={produto.nome} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.nome = valor} mode='outlined' />
                     {/* {carregando && <ActivityIndicator size="large" />} */}
                     <Image height={300} width={350} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
@@ -135,22 +137,22 @@ const Detalhes = ({ navigation }) => {
                     <TextInput defaultValue={produto.imagem} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.imagem = valor} mode='outlined' />
                 </View>
 
-                <View style={{ alignItems: 'center', width: '100%',marginTop:30 }}>
+                <View style={{ alignItems: 'center', width: '100%', marginTop: 30 }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Descrição:</Text>
                     <TextInput placeholder='descricao' defaultValue={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} mode='outlined' />
                 </View>
 
-                <View style={{ alignItems: 'center', width: '100%',marginTop:30 }}>
+                <View style={{ alignItems: 'center', width: '100%', marginTop: 30 }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Categoria:</Text>
                     <TextInput placeholder='categoria' defaultValue={produto.categoria} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.categoria = valor} mode='outlined' />
                 </View>
 
-                <View style={{ flexDirection: 'row', alignItems: 'center',marginTop:30 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 30 }}>
                     <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Preço: </Text>
                     <TextInput placeholder='preço' defaultValue={produto.preco?.toString()} disabled={!editando} style={{ padding: 3 }} onChangeText={(valor) => produto.preco = valor} mode='outlined' />
                 </View>
 
-                <View style={{ flexDirection: 'row', gap: 20, flex: 1, height: 200 ,marginTop:30}}>
+                <View style={{ flexDirection: 'row', gap: 20, flex: 1, height: 200, marginTop: 30 }}>
                     {!editando ? (
                         <TouchableOpacity onPress={() => editarProduto()} style={{ backgroundColor: "blue", padding: 10, borderRadius: 20, height: 40 }}>
                             <Text style={{ color: "white" }}>Editar</Text>
@@ -165,12 +167,14 @@ const Detalhes = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
+
             <Snackbar
                 visible={visible}
                 onDismiss={onDismissSnackBar}>
                 {textoSnack}
             </Snackbar>
-            {editando &&<View style={{height:100}}></View>}
+
+            {editando && <View style={{ height: 100 }}></View>}
         </ScrollView>
     )
 }
