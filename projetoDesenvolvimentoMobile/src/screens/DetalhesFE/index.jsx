@@ -42,26 +42,26 @@ const DetalhesFE = () => {
 
             <View style={styles.item}>
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                   <Text>{produto.nome}</Text>
+                   <Text style={{fontSize: 30, alignSelf: 'center'}}>{produto.nome}</Text>
                     {/* <TextInput defaultValue={produto.nome} disabled={false} style={styles.campos} onChangeText={(valor) => produto.nome = valor} /> */}
                     {/* {carregando && <ActivityIndicator size="large" />} */}
                     <Image height={200} width={400} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>descricao:</Text>
-                    <Text>{produto.descricao}</Text>
+                    <Text style={{ fontSize: 40, fontWeight: 'bold' }}>Descrição:</Text>
+                    <Text style={{fontSize: 30, alignSelf: 'center'}}>{produto.descricao}</Text>
                     {/* <TextInput defaultValue={produto.descricao} disabled={true} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} /> */}
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%' }}>
-                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Categoria:</Text>
-                    <Text>{produto.categoria}</Text>
+                    <Text style={{ fontSize: 40, fontWeight: 'bold' }}>Categoria:</Text>
+                    <Text style={{fontSize: 30, alignSelf: 'center'}}>{produto.categoria}</Text>
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>preço: </Text>
-                    <Text>{produto.preco}</Text>
+                    <Text style={{ fontSize: 40, fontWeight: 'bold' }}>Preço: </Text>
+                    <Text style={{fontSize: 30, alignSelf: 'center'}}>R${produto.preco}</Text>
                 </View>
                 {/* {true ? (<Button title='editar' onPress={() => editarProduto()} />) : ((<Button title='salvar' onPress={() => salvarAlteracoes()} />))} */}
 
