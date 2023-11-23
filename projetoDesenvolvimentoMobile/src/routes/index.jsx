@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Detalhes from '../screens/Detalhes';
+
 import EsqueciSenha from '../screens/EsqueciSenha';
 import Produtos from '../screens/Produtos';
 import Perfil from '../screens/Perfil';
