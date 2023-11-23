@@ -127,14 +127,16 @@ const Detalhes = ({ navigation }) => {
 
             <View style={styles.item}>
                 <View style={{ alignItems: 'center', width: '100%' }}>
+                <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Nome do produto:</Text>
                     <TextInput placeholder='nome' defaultValue={produto.nome} disabled={!editando} style={styles.campos} onChangeText={(valor) => produto.nome = valor} mode='outlined' />
                     {/* {carregando && <ActivityIndicator size="large" />} */}
                     <Image height={300} width={350} resizeMode='contain' source={{ uri: produto?.imagem }} onLoadEnd={() => setCarregando(false)} />
+                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>URL da imagem:</Text>
                     <TextInput defaultValue={produto.imagem} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.imagem = valor} mode='outlined' />
                 </View>
 
                 <View style={{ alignItems: 'center', width: '100%',marginTop:30 }}>
-                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>descricao:</Text>
+                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Descrição:</Text>
                     <TextInput placeholder='descricao' defaultValue={produto.descricao} disabled={!editando} multiline={true} style={styles.campos} onChangeText={(valor) => produto.descricao = valor} mode='outlined' />
                 </View>
 
@@ -144,7 +146,7 @@ const Detalhes = ({ navigation }) => {
                 </View>
 
                 <View style={{ flexDirection: 'row', alignItems: 'center',marginTop:30 }}>
-                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>preço: </Text>
+                    <Text style={{ fontSize: 17, fontWeight: 'bold' }}>Preço: </Text>
                     <TextInput placeholder='preço' defaultValue={produto.preco?.toString()} disabled={!editando} style={{ padding: 3 }} onChangeText={(valor) => produto.preco = valor} mode='outlined' />
                 </View>
 
@@ -192,8 +194,9 @@ const styles = StyleSheet.create({
         width: '40%',
     },
     campos: {
-        alignItems: 'center',
-        padding: 3,
-        width: '100%',
+        justifyContent: 'center',
+        textAlign: 'center',
+        padding: 1,
+        width: '90%',
     },
 })
