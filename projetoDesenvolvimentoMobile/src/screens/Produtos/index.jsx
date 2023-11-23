@@ -43,6 +43,7 @@ const Produtos = ({ navigation }) => {
 
       </View>
       {listaProdutos.length > 0 ? (
+        
         <FlatList
           data={listaProdutos}
           keyExtractor={(item) => item.id.toString()}
@@ -59,7 +60,9 @@ const Produtos = ({ navigation }) => {
               </TouchableOpacity>
             </View>
           )}
+            style={{width: '100%',}}
         />
+        
         
       ) : (
         <Text>Nenhum produto encontrado</Text>
@@ -83,15 +86,19 @@ export default Produtos;
 const styles = StyleSheet.create({
   produtos: {
     flex: 1,
+    alignItems: 'center',
+    width: '100%',
   },
   lista: {
     flex: 1,
     backgroundColor: "#aaa",
     margin: 5,
-    justifyContent: "center",
+    // justifyContent: "space-evenly",
     alignItems: "center",
     padding: 5,
     borderRadius: 7,
+    gap: 0,
+    width: '50%',
   },
   header: {
     marginTop: 40,
@@ -103,8 +110,11 @@ const styles = StyleSheet.create({
   },
   footer: {
     height: "7%",
-    width: "100%",
+    width: "80%",
     backgroundColor: "blue",
+    justifyContent: "center",
+    alignItems: 'center',
+    borderRadius: 50,
 
   },
 
@@ -145,9 +155,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     borderWidth: 2,
     borderColor: 'blue',
-    paddingVertical: 10,
-    paddingHorizontal: 20,
+    // paddingVertical: 10,
+    // paddingHorizontal: 20,
     borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   adicionarText: {
