@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
-import {View, Text, KeyboardAvoidingView, Image, TextInput, Button} from 'react-native';
+import {View, Text, KeyboardAvoidingView, Image, TextInput, Button, TouchableOpacity} from 'react-native';
 import { StyleSheet } from "react-native";
 import { conta } from "../../service/api";
 
@@ -54,11 +54,11 @@ const Cadastro = ({navigation})=> {
             <View>
                 <View style={styles.logo}>
                 <View style={{flexDirection:'row'}}>
-                <Text style={styles.nome}>VIP</Text>
-                <Text style={styles.nomem}>Market</Text>
+                <Text style={styles.nome}>VIP </Text>
+                <Text style={styles.nomem}>Market </Text>
                 </View>
                     <Image source={require('../../../assets/nossalogo.png')} />
-                    <Text style={{color: 'white', fontSize: 40, alignSelf: 'center', marginTop: 30}}>Cadastro</Text>
+                    <Text style={{color: 'white', fontSize: 35, alignSelf: 'center', marginTop: 30}}>Cadastro </Text>
                 </View>
                 <View style={{flex: 1}}>
 
@@ -70,9 +70,19 @@ const Cadastro = ({navigation})=> {
                 <TextInput style={styles.user} value={novaDataNascimento} onChangeText={setNovaDataNasciment}/>
                 <Text style={styles.input}>Senha</Text>
                 <TextInput style={styles.user} value={novaSenha} onChangeText={setNovaSenha}/>
-                <Button style={{marginBottom: 12}} title="Cadastrar" onPress={addConta}/>
+                {/* <Button style={{marginBottom: 12}} title="Cadastrar" onPress={addConta}/>
                 <Button style={{marginBottom: 12}} title="Fazer Login" onPress={handlePressLogin}/>
-                <Button style={{marginTop: 12}} title="Entrar sem login" onPress={handleSemLogin}/>
+                <Button style={{marginTop: 12}} title="Entrar sem login" onPress={handleSemLogin}/> */}
+                <TouchableOpacity onPress={addConta} style={styles.button}>
+                    <Text style={{ textAlign: "center", color: "#fff", fontWeight: 'bold' }}>Cadastrar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handlePressLogin} style={styles.button}>
+                    <Text style={{ textAlign: "center", color: "#fff", fontWeight: 'bold' }}>Fazer Login</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={handleSemLogin} style={styles.button}>
+                    <Text style={{ textAlign: "center", color: "#fff", fontWeight: 'bold' }}>Entrar sem login</Text>
+                </TouchableOpacity>
+                
                 </View>
             </View>
         </KeyboardAvoidingView>
@@ -105,7 +115,7 @@ user:{
     backgroundColor: '#fff',
     borderRadius: 4,
     height:30,
-    marginBottom:28,
+    marginBottom:15,
 },
 senha:{
     backgroundColor: '#fff',
@@ -115,4 +125,13 @@ senha:{
 input:{
     color: '#fff',
 },
+button: {
+    color: "#fff",
+    backgroundColor: "#8906E6",
+    padding: 10,
+    borderRadius: 5,
+    marginRight: 50,
+    marginLeft: 50,
+    marginTop: 10
+  }
 })

@@ -18,8 +18,8 @@ const EsqueciSenha = () => {
       </TouchableOpacity>
         <View style={{flex:1, justifyContent: 'flex-end', alignItems: 'center'}}>
           <View style={{flexDirection: 'row'}}>
-          <Text style={styles.nome}>VIP</Text>
-          <Text style={styles.nomem}>Market</Text>
+          <Text style={styles.nome}>VIP </Text>
+          <Text style={styles.nomem}>Market </Text>
           </View>
         <Image 
         source={require('../../../assets/nossalogo.png')}

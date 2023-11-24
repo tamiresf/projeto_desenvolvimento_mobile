@@ -162,7 +162,7 @@ const Detalhes = ({ navigation }) => {
                             <Text style={{ color: "white" }}>Salvar</Text>
                         </TouchableOpacity>
                     )}
-                    <TouchableOpacity onPress={() => deletar()} style={{ backgroundColor: "red", padding: 10, borderRadius: 20, height: 40 }}>
+                    <TouchableOpacity onPress={() => deletar()} style={{ backgroundColor: "red", padding: 10, borderRadius: 20, height: 40, width: 70 }}>
                         <Text style={{ color: "white" }}>Deletar</Text>
                     </TouchableOpacity>
                 </View>

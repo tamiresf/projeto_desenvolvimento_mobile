@@ -1,10 +1,14 @@
 import { View, Text, FlatList, Image, StyleSheet, Button, TextInput, TouchableOpacity, } from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { api } from "../../service/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/core";
+import { AuthContext } from "../../contexts/AuthContext";
+import { SimpleLineIcons } from '@expo/vector-icons'; 
+
 
 const Produtos = ({ navigation }) => {
+  const { logout } = useContext(AuthContext);
 
   const [listaProdutos, setListaProdutos] = useState([]);
   const [pergunta, setPergunta] = useState('')
@@ -69,7 +73,11 @@ const Produtos = ({ navigation }) => {
 
   return (
     <View style={styles.produtos}>
-      <View style={styles.header}>
+      <View style={{...styles.header, flexDirection: 'row'}}>
+        <TouchableOpacity onPress={logout}>
+
+      <SimpleLineIcons name="logout" size={34} color="black" style={{marginRight: 140}} />
+        </TouchableOpacity>
         <TextInput placeholder="Buscar produto" style={styles.campo} value={pergunta} onChangeText={(valor) => pesquisa(valor)} />
       </View>
       {listaProdutos.length > 0 ? (
@@ -87,8 +95,8 @@ const Produtos = ({ navigation }) => {
                 resizeMode="contain"
                 source={{ uri: item?.imagem }}
               />
-              <TouchableOpacity onPress={() => gardarInfo(item.id)}>
-                <Text style={styles.ver}> Ver Mais</Text>
+              <TouchableOpacity onPress={() => gardarInfo(item.id)} style={{width: 100}}>
+                <Text style={styles.ver}>Ver Mais</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -117,6 +125,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     width: "100%",
+    backgroundColor: 'transparent'
   },
   lista: {
     flex: 1,
@@ -133,7 +142,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     height: "10%",
     width: "100%",
-    justifyContent: "center",
+    // justifyContent: "center",
     // alignItems: "center",
     // backgroundColor: "blue",
   },
@@ -150,6 +159,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderRadius: 8,
     padding: 16,
+    width: 'auto',
     marginBottom: 16,
     shadowColor: "#000",
     shadowOffset: {
@@ -159,6 +169,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+    textAlign: "center",
   },
   productName: {
     fontSize: 18,

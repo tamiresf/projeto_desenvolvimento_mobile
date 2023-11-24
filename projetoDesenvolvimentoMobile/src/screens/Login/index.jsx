@@ -38,12 +38,18 @@ const Login = ({ navigation }) => {
     navigation3.navigate("EsqueciSenha");
   };
 
+  const navigation4 = useNavigation()
+  const handleCadastro = () => {
+    navigation4.navigate("Cadastro");
+  };
+
   return (
     <KeyboardAvoidingView style={styles.tela}>
       <View>
+        
         <View style={{ flexDirection: "row" }}>
-          <Text style={styles.nome}>VIP</Text>
-          <Text style={styles.nomem}>Market</Text>
+          <Text style={styles.nome}>VIP </Text>
+          <Text style={styles.nomem}>Market </Text>
         </View>
         <Image
           source={require("../../../assets/nossalogo.png")}
@@ -78,6 +84,9 @@ const Login = ({ navigation }) => {
 
           <TouchableOpacity onPress={handleSemLogin} style={styles.button}>
             <Text style={{ textAlign: "center", color: "#fff", fontWeight: 'bold' }}>Entrar sem login</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={handleCadastro} style={styles.button}>
+            <Text style={{ textAlign: "center", color: "#fff", fontWeight: 'bold' }}>Cadastre-se</Text>
           </TouchableOpacity>
 
           <View style={styles.touchable}>

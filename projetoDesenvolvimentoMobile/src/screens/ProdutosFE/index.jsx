@@ -12,9 +12,12 @@ import React, { useEffect, useState } from "react";
 import { api } from "../../service/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AntDesign } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons'; 
+import { useNavigation } from "@react-navigation/native";
 
 const ProdutosFE = ({ navigation }) => {
   const [listaProdutos, setListaProdutos] = useState([]);
+  const navigation2 = useNavigation()
 
   const getProdutos = async () => {
     try {
@@ -41,9 +44,18 @@ const ProdutosFE = ({ navigation }) => {
     }
   };
 
+  const handlePressBack = () => {
+    navigation2.navigate('Login')
+  }
+
   return (
     <View style={styles.produtos}>
+      <TouchableOpacity onPress={handlePressBack}>
+        
+      <SimpleLineIcons name="logout" size={34} color="black" style={{marginTop: 30, marginBottom: 20}} />
+      </TouchableOpacity>
       <View style={styles.header}>
+
       <AntDesign name="search1" size={24} color="black" style={{alignSelf: 'center'}} />
         <TextInput placeholder="Buscar produto" style={{...styles.campo,marginLeft: 10, }} />
       </View>
@@ -97,7 +109,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   header: {
-    marginTop: 40,
+    marginTop: 0,
     height: "5%",
     width: "100%",
     // justifyContent: "center",
