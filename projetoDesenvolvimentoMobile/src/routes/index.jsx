@@ -1,4 +1,4 @@
-import React, { View } from 'react';
+import React, { View, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,6 +12,7 @@ import Login from '../screens/Login';
 import ProdutosFE from '../screens/ProdutosFE';
 import DetalhesFE from '../screens/DetalhesFE';
 import Cadastro from '../screens/Cadastro';
+import { AuthContext } from '../contexts/AuthContext';
 
 const { Navigator, Screen } = createBottomTabNavigator();
 
@@ -38,18 +39,32 @@ const TBF = () => {
 const Stack = createStackNavigator();
 
 const Rotas = () => {
+
+  const { user, verificaNivelAcesso } = useContext(AuthContext);
+  console.log(user);
+
+
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        {/* <Screen name='Produtos' component={Produtos} /> */}
-        <Stack.Screen name="Splash" component={Splash} options={{ tabBarVisible: false }} />
-        <Stack.Screen name="Cadastro" component={Cadastro} options={{ tabBarVisible: false }} />
-        <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false }} />
-        <Screen name="Detalhes" component={Detalhes} />
-        <Stack.Screen name="FEApp" component={TBF} options={{ headerShown: false }} />
-        <Stack.Screen name="MainApp" component={TabScreens} options={{ headerShown: false }} />
-        <Stack.Screen name="EsqueciSenha" component={EsqueciSenha} options={{ headerShown: false }} />
-        <Screen name="DetalhesFE" component={DetalhesFE} />
+        
+
+        {user  ? (
+          <>
+            <Stack.Screen name="MainApp" component={TabScreens} options={{ headerShown: false }} />
+            <Screen name="Detalhes" component={Detalhes} />
+            
+          </>
+        ) : (
+          <>
+             <Stack.Screen name="Splash" component={Splash} options={{ tabBarVisible: false }} />
+            <Stack.Screen name="Cadastro" component={Cadastro} options={{ tabBarVisible: false }} />
+            <Stack.Screen name="Login" component={Login} options={{ tabBarVisible: false }} />
+            <Stack.Screen name="EsqueciSenha" component={EsqueciSenha} options={{ headerShown: false }} />
+            <Stack.Screen name="FEApp" component={TBF} options={{ headerShown: false }} />
+            <Screen name="DetalhesFE" component={DetalhesFE} />
+          </>
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );

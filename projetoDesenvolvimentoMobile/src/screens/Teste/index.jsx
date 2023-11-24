@@ -10,7 +10,7 @@ export default function Splash() {
   
   useEffect(() => {
     setTimeout(() => {
-        navigation.navigate('MainApp',{screen:"Produtos"})
+        navigation.navigate('Cadastro')
     }, 2000);
   }, []);
 
