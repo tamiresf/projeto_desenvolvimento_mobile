@@ -1,25 +1,20 @@
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  StyleSheet,
-  Button,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, FlatList, Image, StyleSheet, Button, TextInput, TouchableOpacity, } from "react-native";
 import React, { useCallback, useEffect, useState } from "react";
 import { api } from "../../service/api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/core";
 
 const Produtos = ({ navigation }) => {
+
   const [listaProdutos, setListaProdutos] = useState([]);
+  const [pergunta, setPergunta] = useState('')
+  const [filtro, setFiltro] = useState([]);
 
   const getProdutos = async () => {
     try {
       const response = await api.get("/produtos");
       setListaProdutos(response.data);
+      setFiltro(response.data);
       console.log(response.data);
     } catch (error) {
       console.log(error);
@@ -42,33 +37,44 @@ const Produtos = ({ navigation }) => {
       console.log(e);
     }
   };
+
   const novoProduto = async () => {
     try {
-      const novoProduto ={
-       nome: "nome do produto",
-       imagem: "url da imagem do produto",
-       descricao: "descrição do produto",
-       categoria: "categoria do produto",
-       preco: "preco do produto",
+      const novoProduto = {
+        nome: "nome do produto",
+        imagem: "url da imagem do produto",
+        descricao: "descrição do produto",
+        categoria: "categoria do produto",
+        preco: "preco do produto",
 
       }
-      const {data} = await api.post("/produtos",novoProduto);
+      const { data } = await api.post("/produtos", novoProduto);
       console.log(data);
       AsyncStorage.clear();
       await AsyncStorage.setItem("idDoProduto", JSON.stringify(data.id));
-      navigation.navigate ("Detalhes");
+      navigation.navigate("Detalhes");
     } catch (e) {
       console.log(e);
     }
   };
+
+  const pesquisa = (valor) => {
+    setPergunta(valor)
+    const fil = listaProdutos.filter((item) => {
+      return item.nome.toLowerCase().includes(valor.toLowerCase())
+    })
+    setFiltro(fil);
+  };
+
+
   return (
     <View style={styles.produtos}>
       <View style={styles.header}>
-        <TextInput placeholder="Buscar produto" style={styles.campo} />
+        <TextInput placeholder="Buscar produto" style={styles.campo} value={pergunta} onChangeText={(valor) => pesquisa(valor)} />
       </View>
       {listaProdutos.length > 0 ? (
         <FlatList
-          data={listaProdutos}
+          data={filtro}
           keyExtractor={(item) => item.id.toString()}
           numColumns={2}
           renderItem={({ item }) => (

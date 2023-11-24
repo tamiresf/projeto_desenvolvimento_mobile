@@ -118,9 +118,9 @@ const Detalhes = ({ navigation }) => {
     return (
         <ScrollView style={styles.detalhes}>
 
-            <Header />
+            {/* <Header /> */}
             
-            <View>
+            <View style={{marginTop:30}}>
                 <TouchableOpacity onPress={() => navigation.navigate('MainApp', { screen: 'Produtos' })}>
                     <AntDesign name="back" size={30} color="black" />
                 </TouchableOpacity>
