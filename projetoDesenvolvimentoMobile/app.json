@@ -16,10 +16,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.paulotuler001.projetoDesenvolvimentoMobile"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b027dd72-d0d8-4cd7-8ecd-4503add86074"
+      }
     }
   }
 }
